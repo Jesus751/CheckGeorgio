@@ -5,7 +5,7 @@ import android.content.SharedPreferences;
 
 public class ObjetosTemporales {
     SharedPreferences misShareServer;
-    SharedPreferences misSharedUser;
+    static SharedPreferences misSharedUser;
     SharedPreferences misShareLista;
 
     public ObjetosTemporales(Context context) {
@@ -14,7 +14,16 @@ public class ObjetosTemporales {
         misShareLista = context.getSharedPreferences("Lista", Context.MODE_PRIVATE);
 
     }
-    public ObjetosTemporales() { }
+
+    public static void GuardarUsuario(String id_user, String nombre, String telefono, String clave, String tipo) {
+        SharedPreferences.Editor editor = misSharedUser.edit();
+        editor.putString("User-Id",id_user);
+        editor.putString("User-Name",nombre);
+        editor.putString("User-Tel",telefono);
+        editor.putString("User-Pas",clave);
+        editor.putString("User-Tipo",tipo);
+        editor.commit();
+    }
 
     public void GuardarItemps(final String id, final String nombre, final String tel, final String pas, final String tipo){
         SharedPreferences.Editor editor = misSharedUser.edit();

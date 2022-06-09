@@ -34,8 +34,9 @@ import java.util.Map;
 
 import cabanzo.checkgeorgio.Adapter.AdapterServicios;
 import cabanzo.checkgeorgio.Modelo.Servicios;
+import cabanzo.checkgeorgio.Temporales.ObjetosTemporales;
 
-public class ModuloPrincipal extends AppCompatActivity {
+public class   ModuloPrincipal extends AppCompatActivity {
 
     ListView listaServi;
 
@@ -62,25 +63,26 @@ public class ModuloPrincipal extends AppCompatActivity {
         listaServi.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                final int pos=position;
+                final int pos = position;
 
                 //String selectedItem = (String) adapterView.getItemAtPosition(position);
 
-                TextView IdServicio= (TextView) view.findViewById(R.id.Text_IdServicio);
-                TextView IdMarca= (TextView) view.findViewById(R.id.textV_Marca);
-                TextView IdModelo= (TextView) view.findViewById(R.id.textV_Modelo);
-                TextView IdAno= (TextView) view.findViewById(R.id.textV_Ano);
-                TextView IdPlacas= (TextView) view.findViewById(R.id.textV_Placas);
-                TextView IdCliente= (TextView) view.findViewById(R.id.textV_Cliente);
+                TextView IdServicio = (TextView) view.findViewById(R.id.Text_IdServicio);
+                TextView IdMarca = (TextView) view.findViewById(R.id.textV_Marca);
+                TextView IdModelo = (TextView) view.findViewById(R.id.textV_Modelo);
+                TextView IdAno = (TextView) view.findViewById(R.id.textV_Ano);
+                TextView IdPlacas = (TextView) view.findViewById(R.id.textV_Placas);
+                TextView IdCliente = (TextView) view.findViewById(R.id.textV_Cliente);
 
-                String V_idServicio=IdServicio.getText().toString();
-                String V_idMarca=IdMarca.getText().toString();
-                String V_IdModelo= IdModelo.getText().toString();
-                String V_IdAno= IdAno.getText().toString();
-                String V_IdPlacas= IdPlacas.getText().toString();
+                String V_idServicio = IdServicio.getText().toString();
+                String V_idMarca = IdMarca.getText().toString();
+                String V_IdModelo = IdModelo.getText().toString();
+                String V_IdAno = IdAno.getText().toString();
+                String V_IdPlacas = IdPlacas.getText().toString();
                 String V_IdCliente = IdCliente.getText().toString();
 
-                LanzarChecklist(V_idServicio, ""+V_idMarca+" "+V_IdModelo+" "+V_IdAno +" "+V_IdPlacas,V_IdCliente);
+                LanzarChecklist(V_idServicio, "" + V_idMarca + " " + V_IdModelo + " " + V_IdAno + " " + V_IdPlacas, V_IdCliente);
+
             }
 
 
@@ -106,11 +108,53 @@ public class ModuloPrincipal extends AppCompatActivity {
     }
 
     private  void LanzarChecklist(String idS,String iunidad,String icliente){
-        Intent ix= new Intent(ModuloPrincipal.this, CheckMecanico.class);
-        ix.putExtra("idServicio",idS);
-        ix.putExtra("Unidad",iunidad);
-        ix.putExtra("Cliente",icliente);
-        startActivity(ix);
+        Bundle extras =  getIntent().getExtras();
+
+       String  TipoRepar = extras.getString("repar");
+       String  TiporRecep = extras.getString("recep");
+
+        Log.e( "el tipo es=",  TipoRepar + "------" + TiporRecep );
+
+       if(TipoRepar != null){
+           Intent ix = new Intent(ModuloPrincipal.this, CheckMecanico.class);
+           ix.putExtra("idServicio",idS);
+           ix.putExtra("Unidad",iunidad);
+           ix.putExtra("Cliente",icliente);
+           startActivity(ix);
+
+       }else if(TiporRecep != null) {
+           Intent ix = new Intent(ModuloPrincipal.this, CheckListRecepcion.class);
+           ix.putExtra("idServicio", idS);
+           ix.putExtra("Unidad", iunidad);
+           ix.putExtra("Cliente", icliente);
+           startActivity(ix);
+       }
+       /*
+
+        Log.e( "el tipo es=", TipoRepar + TiporRecep );
+        switch ( Tipo){
+            case "repartidor":{
+                Intent ix = new Intent(ModuloPrincipal.this, CheckMecanico.class);
+                ix.putExtra("idServicio",idS);
+                ix.putExtra("Unidad",iunidad);
+                ix.putExtra("Cliente",icliente);
+                Log.e("Si ingreso", "22");
+                startActivity(ix);
+
+            };break;
+            case "recepcion":{
+                Intent ix = new Intent(ModuloPrincipal.this, CheckListRecepcion.class);
+                ix.putExtra("idServicio",idS);
+                ix.putExtra("Unidad",iunidad);
+                ix.putExtra("Cliente",icliente);
+                Log.e("Si ingreso", "23");
+                startActivity(ix);
+
+            };break;
+        }; */
+
+
+
     }
 
     private void ListarServicios(){

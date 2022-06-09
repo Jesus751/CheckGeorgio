@@ -37,9 +37,9 @@ import java.util.Map;
 
 
 public class cameraActivity extends AppCompatActivity {
-    ImageView iv;
+    ImageView iv, btnCamera;
     EditText et;
-    Button btncargarImagen, btnCamera;
+    Button btncargarImagen;
     Bitmap bitmap;
 
     String UPLOAD_URL = "http://ubiexpress.net:5610/georgio/mobil/PanelCompras.php";
@@ -55,7 +55,7 @@ public class cameraActivity extends AppCompatActivity {
         setContentView(R.layout.activity_camera);
 
         iv =  findViewById(R.id.imagenView);
-        et = findViewById(R.id.editTextTextMultiLine);
+       // et = findViewById(R.id.editTextTextMultiLine);
         btncargarImagen = findViewById(R.id.btnSubir);
         btnCamera = findViewById(R.id.btnCamera);
 
@@ -65,10 +65,14 @@ public class cameraActivity extends AppCompatActivity {
         Bundle idItem = getIntent().getExtras();
 
         if (idItem != null){
-             headerCode = idItem.getString("headerCode");
+            headerCode = idItem.getString("headerCode");
+            Log.i("err","esto es : "+ headerCode);
         }
         TextView tvHeaderCode = (TextView) findViewById(R.id.tvheaderCode);
         tvHeaderCode.setText(headerCode);
+
+
+
 
 
 

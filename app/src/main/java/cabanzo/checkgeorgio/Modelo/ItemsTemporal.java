@@ -1,6 +1,7 @@
 package cabanzo.checkgeorgio.Modelo;
 
-public class ItemsTemporal {
+
+public class ItemsTemporal  {
     String idcheck="";
     String iditem="";
     String descripcion="";

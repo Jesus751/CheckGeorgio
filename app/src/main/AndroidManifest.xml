@@ -25,6 +25,9 @@
         android:theme="@style/Theme.CheckGeorgio"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".CheckListRecepcion"
+            android:exported="false" />
+        <activity
             android:name=".cameraActivity"
             android:exported="false" />
         <activity

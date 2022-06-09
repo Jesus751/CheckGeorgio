@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -55,18 +56,10 @@ public class CheckCategoria extends AppCompatActivity {
         Intent intent=getIntent();
         iDCategoria=intent.getStringExtra("idcategoria");
         iDServicio=intent.getStringExtra("idservicio");
-        ButonGuardar=findViewById(R.id.button_GuardarCheck);
 
         recyclerView = findViewById(R.id.ReciclerCheck);
         DescargaItemsCategoria(iDCategoria,iDServicio);
-        /*
-        ButonGuardar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-
-            }
-        }); */
 
     }
     private void DescargaItemsCategoria(String idcategoria,String idventa){

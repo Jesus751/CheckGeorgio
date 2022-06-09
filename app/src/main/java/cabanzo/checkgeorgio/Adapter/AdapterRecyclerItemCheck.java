@@ -1,22 +1,7 @@
 package cabanzo.checkgeorgio.Adapter;
 
-import static android.app.Activity.RESULT_OK;
-import static androidx.core.app.ActivityCompat.startActivityForResult;
-
-import android.Manifest;
-import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
-import android.os.Build;
-import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
-import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,39 +10,17 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ListAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.core.content.FileProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
-import cabanzo.checkgeorgio.CheckCategoria;
 import cabanzo.checkgeorgio.Modelo.ItemsCategoria;
 import cabanzo.checkgeorgio.Modelo.ItemsTemporal;
 import cabanzo.checkgeorgio.R;
@@ -91,10 +54,18 @@ public class AdapterRecyclerItemCheck extends RecyclerView.Adapter<AdapterRecycl
     }
 
     @Override
-    public void onBindViewHolder(@NonNull Holder holder, int position){
+    public void onBindViewHolder(@NonNull Holder holder,final int position){
+        final String itemsTemporal = itemChecks.get(position).getIdcheck();
         holder.TDescripcion.setText(itemChecks.get(position).getDescripcion());
         holder.TIdeItem.setText(itemChecks.get(position).getIdcheck());
-        holder.setOnClickListener();
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =  new Intent(holder.itemView.getContext(), cameraActivity.class);
+                intent.putExtra("headerCode",itemsTemporal);
+                context.startActivity(intent);
+            }
+        });
     }
 
 
@@ -124,15 +95,18 @@ public class AdapterRecyclerItemCheck extends RecyclerView.Adapter<AdapterRecycl
             super(itemView);
             context = itemView.getContext();
             TIdeItem = itemView.findViewById(R.id.textView_idItem);
-            ICheck = itemView.findViewById(R.id.checkBoxMec);
+           // ICheck = itemView.findViewById(R.id.checkBoxMec);
             TDescripcion = itemView.findViewById(R.id.textViewDescrip);
-            ImgComentarios = itemView.findViewById(R.id.imageViewComent);
-            ICamaras = itemView.findViewById(R.id.imageViewCamera);
-            TComentarios = itemView.findViewById(R.id.editTextTextMultiLine);
-            TimgViewFoto = itemView.findViewById(R.id.imageView);
-            Tfoto = itemView.findViewById(R.id.Textnamefoto);
+            //ImgComentarios = itemView.findViewById(R.id.imageViewComent);
+            //ICamaras = itemView.findViewById(R.id.imageViewCamera);
+            //TComentarios = itemView.findViewById(R.id.editTextTextMultiLine);
+            //TimgViewFoto = itemView.findViewById(R.id.imageView);
+            //Tfoto = itemView.findViewById(R.id.Textnamefoto);
         }
 
+
+
+        /*
         public CheckBox getICheck() {
             return ICheck;
         }
@@ -150,11 +124,10 @@ public class AdapterRecyclerItemCheck extends RecyclerView.Adapter<AdapterRecycl
         }
         public TextView getTfoto(){return Tfoto;}
 
+            */
+        /*
+        void setOnClickListener( ){
 
-        void setOnClickListener(){
-            //ICheck.setOnClickListener(this);
-            //ICamaras.setOnClickListener(this);
-            //ImgComentarios.setOnClickListener(this);
             ICamaras.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -166,6 +139,7 @@ public class AdapterRecyclerItemCheck extends RecyclerView.Adapter<AdapterRecycl
                 }
             });
 
+            /*
 
             ICheck.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -194,16 +168,7 @@ public class AdapterRecyclerItemCheck extends RecyclerView.Adapter<AdapterRecycl
 
                 }
             });
-            ImgComentarios.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    // recorrerlista(itemsTemporals);
-
-                    abrirCamara();
-
-                }
-            });
-
+            /*
             BGuardar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -211,10 +176,10 @@ public class AdapterRecyclerItemCheck extends RecyclerView.Adapter<AdapterRecycl
                     Log.e("Xrichi","Click click click click");
                     SubirCambios();
                 }
-            });
+            });*/
         }
 
-
+        /*
 
         private  void  SubirCambios(){
 
@@ -263,7 +228,7 @@ public class AdapterRecyclerItemCheck extends RecyclerView.Adapter<AdapterRecycl
                         profilo.getId_ser_venta(),
                         profilo.getUrlvideo(),
                         profilo.getUrlfoto() );
-Log.e("HOLA FOTO",profilo.getUrlfoto()+"---"+profilo.getNombrefoto());
+        Log.e("HOLA FOTO",profilo.getUrlfoto()+"---"+profilo.getNombrefoto());
 
 
                 File image = new File(profilo.getUrlfoto(), profilo.getNombrefoto());
@@ -281,7 +246,7 @@ Log.e("HOLA FOTO",profilo.getUrlfoto()+"---"+profilo.getNombrefoto());
             }
         }
 
-
+/*
 
         //COMPRIME LA IMAGEN
         public String getStringImagen(final Bitmap bmp) {
@@ -329,7 +294,7 @@ Log.e("HOLA FOTO",profilo.getUrlfoto()+"---"+profilo.getNombrefoto());
             requestQueue.add(stringRequest);
         }
 
-
+/*
         private void ActualizaItemsCategoria(
                 String Zidcheck ,
                 String Ziditem ,
@@ -378,6 +343,7 @@ Log.e("HOLA FOTO",profilo.getUrlfoto()+"---"+profilo.getNombrefoto());
             requestQueue.add(stringRequest);
         }
 
+        /*
         private void recorrerlista(List<ItemsTemporal> ListaCheck){
             Log.w("iter1","aqui entro");
             Iterator<ItemsTemporal> it = ListaCheck.iterator();
@@ -387,7 +353,7 @@ Log.e("HOLA FOTO",profilo.getUrlfoto()+"---"+profilo.getNombrefoto());
                 Log.w("iter1",item.toString());
                 Log.w("iter2" , item.getDescripcion());
             }
-        }
+        }*/
 
         private Boolean buscarLista(List<ItemsTemporal> ListaCheck,String idBuscar){
             Boolean resultado=false;
@@ -402,7 +368,7 @@ Log.e("HOLA FOTO",profilo.getUrlfoto()+"---"+profilo.getNombrefoto());
                 }
             return resultado;
         }
-
+/*
         private List<ItemsTemporal> ActualizaLista(List<ItemsTemporal> ListaCheck,String idBuscar){
             List<ItemsTemporal> itemsAct=new ArrayList<>();
             int indice=0;
@@ -422,7 +388,7 @@ Log.e("HOLA FOTO",profilo.getUrlfoto()+"---"+profilo.getNombrefoto());
             itemsAct=ListaCheck;
             return itemsAct;
         }
-
+/*
         private List<ItemsTemporal> ActualizaListaFoto(List<ItemsTemporal> ListaCheck,String idBuscar,String urlfoto,String namefoto){
             List<ItemsTemporal> itemsAct=new ArrayList<>();
             int indice=0;
@@ -444,9 +410,7 @@ Log.e("HOLA FOTO",profilo.getUrlfoto()+"---"+profilo.getNombrefoto());
             return itemsAct;
         }
 
-
-        static final int REQUEST_VIDEO_CAPTURE = 1;
-
+        /*
         private void dispatchTakeVideoIntent() {
             Intent intento1 = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
             Log.e("video",itemView.getContext().getExternalFilesDir(null).toString());
@@ -473,18 +437,10 @@ private void cameraIntent() {
            // startActivityForResult(takePictureIntent, REQUEST_CODE_TAKE_VIDEO);
         }
     }
-}
-
-        // Tomar Foto
-        private void abrirCamara() {
-
-
-
-
-        }
+}*/
 
 
     }
 
-}
+
 

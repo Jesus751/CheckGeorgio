@@ -3,7 +3,9 @@ package cabanzo.checkgeorgio.Modelo;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class ItemsCategoria {
+import java.io.Serializable;
+
+public class ItemsCategoria implements Serializable {
     String idcheck="";
     String iditem="";
     String descripcion="";

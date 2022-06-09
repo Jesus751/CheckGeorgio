@@ -15,7 +15,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="112dp"
             android:layout_gravity="center"
             android:layout_marginBottom="20dp"
             android:orientation="vertical">
@@ -29,26 +29,29 @@
 
                 <TextView
                     android:id="@+id/textView"
-                    android:layout_width="248dp"
-                    android:layout_height="115dp"
+                    android:layout_width="180dp"
+                    android:layout_height="80dp"
                     android:text="UNIDADES PENDIENTES"
                     android:textColor="#040404"
-                    android:textStyle="bold"
+                    android:textSize="30dp"
 
-                    />
+                    android:textStyle="bold" />
 
                 <ImageView
                     android:id="@+id/imageViewMotor"
                     android:layout_width="100dp"
-                    android:layout_height="115dp"
+                    android:layout_height="match_parent"
                     android:layout_marginLeft="10dp"
                     app:srcCompat="@drawable/icon_carro" />
             </LinearLayout>
 
             <SearchView
                 android:id="@+id/SBuscar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_width="420dp"
+                android:layout_height="36dp"
+                android:layout_margin="1dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginBottom="15dp" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -66,7 +69,8 @@
             android:layout_height="match_parent"
             android:divider="@color/material_on_primary_disabled"
             android:dividerHeight="0dp"
-            android:headerDividersEnabled="false" />
+            android:headerDividersEnabled="false"
+            />
 
     </LinearLayout>
 </LinearLayout>

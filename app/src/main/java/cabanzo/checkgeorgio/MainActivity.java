@@ -3,6 +3,7 @@ package cabanzo.checkgeorgio;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -27,6 +28,8 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import cabanzo.checkgeorgio.Temporales.ObjetosTemporales;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -61,7 +64,10 @@ public class MainActivity extends AppCompatActivity {
 
         Biniciarsec = findViewById(R.id.buttonLogin);
 
-        if (!ObtieneUsuario().isEmpty() && !ObtienePass().isEmpty()){ ValidarUsuario(ObtieneUsuario(),ObtienePass()); }
+      //  if (!ObtieneUsuario().isEmpty() && !ObtienePass().isEmpty()){
+        //    ValidarUsuario(ObtieneUsuario(),ObtienePass());
+        //}
+
 
         Biniciarsec.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,9 +93,13 @@ public class MainActivity extends AppCompatActivity {
         editor.apply();
     }
 
-    public boolean obtener_estado_boton(){
+    public  boolean obtener_estado_boton( ){
         SharedPreferences settings = getSharedPreferences(PREFS_KEY, MODE_PRIVATE);
         return settings.getBoolean(ESTADO_BOTON,false);
+    }
+    public static void  CambiarstadoButoon(Context c, boolean b){
+        SharedPreferences preferences = c.getSharedPreferences(PREFS_KEY,MODE_PRIVATE);
+        preferences.edit().putBoolean(ESTADO_BOTON,b).apply();
     }
 
     public void  GuardarUsuario(){
@@ -134,13 +144,27 @@ public class MainActivity extends AppCompatActivity {
                     } catch (Exception e) { e.printStackTrace(); }
                     switch (TIPO){
                         case "repartidor":{
-                            //objetosTemporales.GuardarUsuario(ID_USER, NOMBRE, TELEFONO, CLAVE, TIPO);
-                            startActivity(new Intent(getApplicationContext(), ModuloPrincipal.class));
+                            //ObjetosTemporales.GuardarUsuario(ID_USER, NOMBRE, TELEFONO, CLAVE, TIPO);
+                            //startActivity(new Intent(getApplicationContext(), ModuloPrincipal.class));
+                            Intent  i =  new Intent(getApplicationContext(),ModuloPrincipal.class);
+                            i.putExtra("repar", TIPO);
+                            startActivity(i);
                         };break;
                         case "chofer":{
-                            //objetosTemporales.GuardarUsuario(ID_USER, NOMBRE, TELEFONO, CLAVE, TIPO);
+                            //ObjetosTemporales.GuardarUsuario(ID_USER, NOMBRE, TELEFONO, CLAVE, TIPO);
                             startActivity(new Intent(getApplicationContext(), CheckMecanico.class));
                         };break;
+                        case "recepcion":{
+                           // ObjetosTemporales.GuardarUsuario(ID_USER, NOMBRE, TELEFONO, CLAVE, TIPO);
+                           // startActivity(new Intent(getApplicationContext(),ModuloPrincipal.class));
+                            Intent i =  new Intent(getApplicationContext(),ModuloPrincipal.class);
+                            i.putExtra("recep", TIPO);
+                            startActivity(i);
+
+                        }; break;
+                        case "admin":{
+
+                        }; break;
                     }
                 } else {
                     usertel.setError("LOS DATOS SON INCORRECTOS");
