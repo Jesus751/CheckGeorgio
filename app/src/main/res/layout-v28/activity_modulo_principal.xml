@@ -13,20 +13,43 @@
         tools:layout_editor_absoluteX="1dp"
         tools:layout_editor_absoluteY="1dp">
 
-        <TextView
-            android:id="@+id/textView"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="UNIDADES PENDIENTES"
-            android:textAlignment="center"
-            android:textColor="#040404"
-            android:textStyle="bold" />
+            android:layout_gravity="center"
+            android:layout_marginBottom="20dp"
+            android:orientation="vertical">
 
-        <SearchView
-            android:id="@+id/SBuscar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            <LinearLayout
+                android:id="@+id/LINEA16"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
 
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="248dp"
+                    android:layout_height="115dp"
+                    android:text="UNIDADES PENDIENTES"
+                    android:textColor="#040404"
+                    android:textStyle="bold"
+
+                    />
+
+                <ImageView
+                    android:id="@+id/imageViewMotor"
+                    android:layout_width="100dp"
+                    android:layout_height="115dp"
+                    android:layout_marginLeft="10dp"
+                    app:srcCompat="@drawable/icon_carro" />
+            </LinearLayout>
+
+            <SearchView
+                android:id="@+id/SBuscar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
