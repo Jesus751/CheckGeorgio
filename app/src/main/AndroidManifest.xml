@@ -25,6 +25,21 @@
         android:theme="@style/Theme.CheckGeorgio"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".AddUsuariosActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SubirItemActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AgregarCheckListReccepcionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AgregarCheckListMecanicoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AdminActivity"
+            android:exported="false" />
+        <activity
             android:name=".CheckListRecepcion"
             android:exported="false" />
         <activity

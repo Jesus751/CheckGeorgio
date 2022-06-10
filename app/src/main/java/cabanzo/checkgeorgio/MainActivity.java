@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     String TIPO="";
     String ID_USER="";
     String NOMBRE="";
+    String APELLIDO="";
     String TELEFONO="";
     String CLAVE="";
     CheckBox checkBox;
@@ -136,6 +137,7 @@ public class MainActivity extends AppCompatActivity {
                                     JSONObject oj = contacs.getJSONObject(i);
                                     ID_USER = oj.getString("idUsuario_movil");
                                     NOMBRE = oj.getString("nombre");
+                                    APELLIDO = oj.getString("apellido");
                                     TIPO = oj.getString("tipo");
 
                                 }
@@ -162,7 +164,11 @@ public class MainActivity extends AppCompatActivity {
                             startActivity(i);
 
                         }; break;
-                        case "admin":{
+                        case "repartidora":{
+                            Intent i =  new Intent(getApplicationContext(), AdminActivity.class);
+                            i.putExtra("nom", NOMBRE);
+                            i.putExtra("apell",APELLIDO);
+                            startActivity(i);
 
                         }; break;
                     }

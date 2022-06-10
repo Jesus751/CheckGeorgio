@@ -41,7 +41,7 @@ public class CheckCategoria extends AppCompatActivity {
     StringRequest stringRequest;
     RequestQueue requestQueue;
 
-    ArrayList<ItemsCategoria> itemsCategorias=new ArrayList<ItemsCategoria>();
+    ArrayList<ItemsCategoria> itemsCategorias = new ArrayList<ItemsCategoria>();
     AdapterRecyclerItemCheck adapterRecyclerItemCheck;
     String iDCategoria="";
     String iDServicio="";

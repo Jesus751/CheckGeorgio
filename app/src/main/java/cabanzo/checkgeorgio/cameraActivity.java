@@ -55,7 +55,7 @@ public class cameraActivity extends AppCompatActivity {
         setContentView(R.layout.activity_camera);
 
         iv =  findViewById(R.id.imagenView);
-       // et = findViewById(R.id.editTextTextMultiLine);
+       //et = findViewById(R.id.editTextTextMultiLine);
         btncargarImagen = findViewById(R.id.btnSubir);
         btnCamera = findViewById(R.id.btnCamera);
 
@@ -189,6 +189,7 @@ public class cameraActivity extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }
+
 }
 
 

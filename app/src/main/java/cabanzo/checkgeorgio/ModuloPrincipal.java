@@ -113,7 +113,7 @@ public class   ModuloPrincipal extends AppCompatActivity {
        String  TipoRepar = extras.getString("repar");
        String  TiporRecep = extras.getString("recep");
 
-        Log.e( "el tipo es=",  TipoRepar + "------" + TiporRecep );
+        Log.e( "el tipo es=",  TipoRepar + "------" + TiporRecep + "--"  );
 
        if(TipoRepar != null){
            Intent ix = new Intent(ModuloPrincipal.this, CheckMecanico.class);
