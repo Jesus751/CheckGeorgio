@@ -145,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                     } catch (Exception e) { e.printStackTrace(); }
                     switch (TIPO){
-                        case "repartidor":{
+                        case "repartidorg":{
                             //ObjetosTemporales.GuardarUsuario(ID_USER, NOMBRE, TELEFONO, CLAVE, TIPO);
                             //startActivity(new Intent(getApplicationContext(), ModuloPrincipal.class));
                             Intent  i =  new Intent(getApplicationContext(),ModuloPrincipal.class);
@@ -164,8 +164,8 @@ public class MainActivity extends AppCompatActivity {
                             startActivity(i);
 
                         }; break;
-                        case "repartidora":{
-                            Intent i =  new Intent(getApplicationContext(), AdminActivity.class);
+                        case "repartidor":{
+                            Intent i =  new Intent(getApplicationContext(), MenuAdminActivity.class);
                             i.putExtra("nom", NOMBRE);
                             i.putExtra("apell",APELLIDO);
                             startActivity(i);

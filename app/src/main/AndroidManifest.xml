@@ -25,6 +25,12 @@
         android:theme="@style/Theme.CheckGeorgio"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".MenuAdminActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UsuariosActivity"
+            android:exported="false" />
+        <activity
             android:name=".AddUsuariosActivity"
             android:exported="false" />
         <activity

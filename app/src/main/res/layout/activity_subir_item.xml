@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center|top"
+    android:gravity="center_horizontal"
     android:orientation="vertical"
     tools:context=".SubirItemActivity">
 
@@ -54,16 +54,14 @@
                 android:text="Guardar">
             </Button>
 
+
         </LinearLayout>
-        <ListView
-            android:id="@+id/ListaMecRec"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:divider="@color/material_on_primary_disabled"
-            android:dividerHeight="0dp"
-            android:headerDividersEnabled="false"
-            />
 
     </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/ReciclerCheckList"
+        android:layout_width="match_parent"
+        android:layout_height="593dp" />
 
 </LinearLayout>

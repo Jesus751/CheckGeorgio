@@ -1,6 +1,8 @@
 package cabanzo.checkgeorgio;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -21,17 +23,24 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Map;
 
+import cabanzo.checkgeorgio.Adapter.AdapterCheckList;
 import cabanzo.checkgeorgio.Adapter.AdapterServicios;
+import cabanzo.checkgeorgio.Modelo.ItemsCategoria;
+import cabanzo.checkgeorgio.Modelo.ItemsCheck;
 import cabanzo.checkgeorgio.Modelo.Servicios;
 
 public class SubirItemActivity extends AppCompatActivity {
 
-    ListView listaCheck;
-
+    RecyclerView recyclerView;
     EditText nombreCheckList;
     Button guardar;
     TextView nombreCATE;
@@ -43,22 +52,30 @@ public class SubirItemActivity extends AppCompatActivity {
     StringRequest stringRequest;
     RequestQueue requestQueue;
 
-    ArrayList<Servicios> itemServicios = new ArrayList<>();
-    AdapterServicios adapterServicios;
+    ArrayList<ItemsCheck> itemsChecks = new ArrayList<ItemsCheck>();
+    AdapterCheckList adapterCheckList;
+
+    String iDCategoria="";
+    String iDServicio="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_subir_item);
 
-        listaCheck = findViewById(R.id.ListaMecRec);
+        Intent intent=getIntent();
+        iDCategoria=intent.getStringExtra("idcategoria");
+        iDServicio=intent.getStringExtra("idservicio");
+        recyclerView = findViewById(R.id.ReciclerCheckList);
+
+
+
         nombreCheckList = findViewById(R.id.editTextTextNombreCheck);
         guardar =  findViewById(R.id.btbguardar);
         nombreCATE =  findViewById(R.id.txtServicioc);
 
-
-
-
+        DescargaItemsCheckListDisponibles(iDCategoria);
+        // Guardar Ckeck List
         guardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -110,4 +127,52 @@ public class SubirItemActivity extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }
+
+    // Descargar Items de CheckList
+
+    private  void  DescargaItemsCheckListDisponibles( String idcategoria){
+        stringRequest = new StringRequest(Request.Method.POST, UPLOAD_URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.e("mens", "ss" + response);
+                if (!response.isEmpty()) {
+                    try {
+                        JSONObject jsonObject = new JSONObject(response);
+                        JSONArray jsonArray = jsonObject.getJSONArray("Consulta");
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            JSONObject ob = jsonArray.getJSONObject(i);
+
+                            itemsChecks.add(new ItemsCheck(ob));
+                        }
+                        adapterCheckList = new AdapterCheckList(SubirItemActivity.this, itemsChecks, iDServicio);
+                        recyclerView.setAdapter(adapterCheckList);
+                        recyclerView.setLayoutManager(new LinearLayoutManager(SubirItemActivity.this, LinearLayoutManager.VERTICAL, false));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(SubirItemActivity.this, "No se pudo descargar los check list disponibles", Toast.LENGTH_SHORT).show();
+            }
+        }){
+            @Override
+                    protected Map<String,String> getParams() throws  AuthFailureError{
+                HashMap<String, String> params  =  new HashMap<>();
+                params.put("opcion","54");
+                params.put("categoria",idcategoria);
+                Log.e("check", idcategoria);
+                return params;
+            }
+        };
+        requestQueue =  Volley.newRequestQueue(getBaseContext());
+        requestQueue.add(stringRequest);
+    }
+
+
+
+
 }
