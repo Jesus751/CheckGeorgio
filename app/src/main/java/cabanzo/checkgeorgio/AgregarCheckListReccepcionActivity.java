@@ -27,7 +27,7 @@ public class AgregarCheckListReccepcionActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i =  new Intent(AgregarCheckListReccepcionActivity.this, SubirItemActivity.class);
-                i.putExtra("idcategoria","1");
+                i.putExtra("iditem","14");
                 startActivity(i);
             }
         });
@@ -36,7 +36,7 @@ public class AgregarCheckListReccepcionActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i =  new Intent(AgregarCheckListReccepcionActivity.this, SubirItemActivity.class);
-                i.putExtra("idcategoria","1");
+                i.putExtra("iditem","15");
                 startActivity(i);
             }
         });
@@ -45,7 +45,7 @@ public class AgregarCheckListReccepcionActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i =  new Intent(AgregarCheckListReccepcionActivity.this, SubirItemActivity.class);
-                i.putExtra("idcategoria","1");
+                i.putExtra("iditem","16");
                 startActivity(i);
             }
         });
@@ -53,7 +53,7 @@ public class AgregarCheckListReccepcionActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i =  new Intent(AgregarCheckListReccepcionActivity.this, SubirItemActivity.class);
-                i.putExtra("idcategoria","1");
+                i.putExtra("iditem","17");
                 startActivity(i);
             }
         });

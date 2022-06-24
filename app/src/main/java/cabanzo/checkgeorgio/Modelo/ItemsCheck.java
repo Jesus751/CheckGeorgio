@@ -13,9 +13,9 @@ public class ItemsCheck  implements Serializable {
 
     public ItemsCheck(JSONObject object){
         try {
-            this.idcheck=object.getString("idcheck");
-            this.descripcion=object.getString("descripcion");
-            this.categoria=object.getString("categoria");
+            this.idcheck=object.getString("id_check_list");
+            this.descripcion=object.getString("nombre_check");
+            this.categoria=object.getString("id_item");
         } catch (JSONException e){e.printStackTrace();}
 
     }

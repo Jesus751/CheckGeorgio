@@ -35,6 +35,7 @@ public class AdapterCheckList  extends  RecyclerView.Adapter<AdapterCheckList.Ho
     public void onBindViewHolder(@NonNull AdapterCheckList.Holder holder, int position) {
         holder.TDescripcion.setText(itemChecks.get(position).getDescripcion());
         holder.TIdeItem.setText(itemChecks.get(position).getIdcheck());
+        holder.Tcategoria.setText(itemChecks.get(position).getCategoria());
         holder.setOnClickListener();
     }
 
@@ -44,7 +45,7 @@ public class AdapterCheckList  extends  RecyclerView.Adapter<AdapterCheckList.Ho
     }
 
     public class Holder extends RecyclerView.ViewHolder {
-        TextView TIdeItem, TDescripcion;
+        TextView TIdeItem, TDescripcion, Tcategoria;
         Button edit, delete;
         //context
         Context context;
@@ -54,6 +55,7 @@ public class AdapterCheckList  extends  RecyclerView.Adapter<AdapterCheckList.Ho
             super(itemView);
             context = itemView.getContext();
             TIdeItem = itemView.findViewById(R.id.textView_idItem_dato);
+            Tcategoria= itemView.findViewById(R.id.textView_idItem_Cate);
             TDescripcion = itemView.findViewById(R.id.textViewnombreChek);
             delete =  itemView.findViewById(R.id.btnEliminar);
             edit  = itemView.findViewById(R.id.btnEditar);

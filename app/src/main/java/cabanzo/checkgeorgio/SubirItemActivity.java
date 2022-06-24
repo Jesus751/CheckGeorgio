@@ -43,10 +43,11 @@ public class SubirItemActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     EditText nombreCheckList;
     Button guardar;
-    TextView nombreCATE;
+    TextView nombreCATE,cate ;
 
 
-    String UPLOAD_URL = "http://ubiexpress.net:5610/georgio/mobil/PanelCompras.php";
+    String UPLOAD_URL = "http://ubiexpress.net:5610/WebServiceGeorgioMovil/PanelCheckList.php";
+    String URL_CATEGORIAS= "http://ubiexpress.net:5610/WebServiceGeorgioMovil/PaneltemsMecanico.php";
     String KEY_NOMBRE_CHECK = "nombreCheck";
 
     StringRequest stringRequest;
@@ -64,7 +65,7 @@ public class SubirItemActivity extends AppCompatActivity {
         setContentView(R.layout.activity_subir_item);
 
         Intent intent=getIntent();
-        iDCategoria=intent.getStringExtra("idcategoria");
+        iDCategoria=intent.getStringExtra("iditem");
         iDServicio=intent.getStringExtra("idservicio");
         recyclerView = findViewById(R.id.ReciclerCheckList);
 
@@ -115,18 +116,18 @@ public class SubirItemActivity extends AppCompatActivity {
         }){
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
-
                 String nombre = nombreCheckList.getText().toString().trim().toUpperCase();
-
                 Map<String, String> params = new Hashtable<String, String>();
                 params.put(KEY_NOMBRE_CHECK, nombre);
-                params.put("opcion", "56" );
+                params.put("idcate",iDCategoria);
+                params.put("opcion", "1" );
                 return params;
             }
         };
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }
+
 
     // Descargar Items de CheckList
 
@@ -141,7 +142,6 @@ public class SubirItemActivity extends AppCompatActivity {
                         JSONArray jsonArray = jsonObject.getJSONArray("Consulta");
                         for (int i = 0; i < jsonArray.length(); i++) {
                             JSONObject ob = jsonArray.getJSONObject(i);
-
                             itemsChecks.add(new ItemsCheck(ob));
                         }
                         adapterCheckList = new AdapterCheckList(SubirItemActivity.this, itemsChecks, iDServicio);
@@ -162,15 +162,15 @@ public class SubirItemActivity extends AppCompatActivity {
             @Override
                     protected Map<String,String> getParams() throws  AuthFailureError{
                 HashMap<String, String> params  =  new HashMap<>();
-                params.put("opcion","54");
-                params.put("categoria",idcategoria);
-                Log.e("check", idcategoria);
+                params.put("opcion","4");
+
                 return params;
             }
         };
         requestQueue =  Volley.newRequestQueue(getBaseContext());
         requestQueue.add(stringRequest);
     }
+
 
 
 

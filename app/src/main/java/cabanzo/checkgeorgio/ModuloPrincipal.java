@@ -36,13 +36,13 @@ import cabanzo.checkgeorgio.Adapter.AdapterServicios;
 import cabanzo.checkgeorgio.Modelo.Servicios;
 import cabanzo.checkgeorgio.Temporales.ObjetosTemporales;
 
-public class   ModuloPrincipal extends AppCompatActivity {
+public class   ModuloPrincipal extends AppCompatActivity implements  SearchView.OnQueryTextListener{
 
     ListView listaServi;
 
     EditText usertel,userpass;
     Button Biniciarsec;
-    SearchView SVBuscar;
+    SearchView txtBuscar;
 
 
     String URL_SERVICIOS="http://ubiexpress.net:5610/georgio/mobil/PanelCompras.php";
@@ -52,12 +52,13 @@ public class   ModuloPrincipal extends AppCompatActivity {
     ArrayList<Servicios> itemServicios = new ArrayList<>();
     AdapterServicios adapterServicios;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_modulo_principal);
         listaServi= findViewById(R.id.ListaServicios);
-        SVBuscar = findViewById(R.id.SBuscar);
+        txtBuscar = findViewById(R.id.SBuscar);
         ListarServicios();
 
         listaServi.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -85,27 +86,10 @@ public class   ModuloPrincipal extends AppCompatActivity {
 
             }
 
-
         });
-
-        SVBuscar.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String s) {
-                Log.d("holis",s);
-                itemServicios.clear();
-
-                BuscarServicios(s);
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String s) {
-                Log.d("holis",s);
-                return false;
-            }
-        });
-
+        txtBuscar.setOnQueryTextListener(this);
     }
+
 
     private  void LanzarChecklist(String idS,String iunidad,String icliente){
         Bundle extras =  getIntent().getExtras();
@@ -235,4 +219,16 @@ public class   ModuloPrincipal extends AppCompatActivity {
         requestQueue.add(stringRequest);
     }
 
+    @Override
+    public boolean onQueryTextSubmit(String s) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String s) {
+
+        adapterServicios.busqueda(s);
+        Log.d("holis",s);
+        return false;
+    }
 }

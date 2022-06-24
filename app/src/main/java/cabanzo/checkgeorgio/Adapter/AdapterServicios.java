@@ -1,6 +1,7 @@
 package cabanzo.checkgeorgio.Adapter;
 
 import android.content.Context;
+import android.os.Build;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,9 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+import java.util.stream.Collectors;
 
 import cabanzo.checkgeorgio.Modelo.Servicios;
 import cabanzo.checkgeorgio.R;
@@ -20,10 +24,37 @@ import cabanzo.checkgeorgio.R;
 public class AdapterServicios extends BaseAdapter {
     Context context;
     ArrayList<Servicios> itemServicios;
+    ArrayList<Servicios> itemsBusqueda;
 
     public AdapterServicios(Context context, ArrayList<Servicios> itemServicios){
         this.context=context;
         this.itemServicios = itemServicios;
+        this.itemsBusqueda = new ArrayList<>();
+        this.itemsBusqueda.addAll(itemServicios);
+    }
+
+    public  void  busqueda(final String txtbuscar){
+        int longitud = txtbuscar.length();
+        if(longitud == 0){
+            itemServicios.clear();
+            itemServicios.addAll(itemsBusqueda);
+        }else{
+            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
+                List<Servicios> collecion = itemServicios.stream()
+                        .filter(i ->i.getNombre().toLowerCase().contains(txtbuscar.toLowerCase()))
+                        .collect(Collectors.toList());
+                itemServicios.clear();
+                itemServicios.addAll(collecion);
+            }else{
+                for (Servicios c: itemsBusqueda){
+                    if(c.getNombre().toLowerCase().contains(txtbuscar.toLowerCase())){
+                        itemServicios.add(c);
+                    }
+                }
+            }
+
+        }
+        notifyDataSetChanged();
     }
 
     @Override

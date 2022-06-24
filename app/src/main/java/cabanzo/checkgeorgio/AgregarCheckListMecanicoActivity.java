@@ -30,7 +30,8 @@ public class AgregarCheckListMecanicoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(AgregarCheckListMecanicoActivity.this, SubirItemActivity.class);
-                i.putExtra("idcategoria","1");
+                i.putExtra("iditem","18");
+
                 startActivity(i);
             }
         });
@@ -39,7 +40,7 @@ public class AgregarCheckListMecanicoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(AgregarCheckListMecanicoActivity.this, SubirItemActivity.class);
-                i.putExtra("idcategoria","1");
+                i.putExtra("iditem","19");
                 startActivity(i);
             }
         });
@@ -48,7 +49,7 @@ public class AgregarCheckListMecanicoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(AgregarCheckListMecanicoActivity.this, SubirItemActivity.class);
-                i.putExtra("idcategoria","1");
+                i.putExtra("iditem","20");
                 startActivity(i);
             }
         });
@@ -56,7 +57,7 @@ public class AgregarCheckListMecanicoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(AgregarCheckListMecanicoActivity.this, SubirItemActivity.class);
-                i.putExtra("idcategoria","1");
+                i.putExtra("iditem","21");
                 startActivity(i);
             }
         });
@@ -65,7 +66,7 @@ public class AgregarCheckListMecanicoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(AgregarCheckListMecanicoActivity.this, SubirItemActivity.class);
-                i.putExtra("idcategoria","1");
+                i.putExtra("iditem","22");
                 startActivity(i);
             }
         });
@@ -73,7 +74,7 @@ public class AgregarCheckListMecanicoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(AgregarCheckListMecanicoActivity.this, SubirItemActivity.class);
-                i.putExtra("idcategoria","1");
+                i.putExtra("iditem","23");
                 startActivity(i);
             }
         });
@@ -82,7 +83,7 @@ public class AgregarCheckListMecanicoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(AgregarCheckListMecanicoActivity.this, SubirItemActivity.class);
-                i.putExtra("idcategoria","1");
+                i.putExtra("iditem","24");
                 startActivity(i);
             }
         });
@@ -90,7 +91,7 @@ public class AgregarCheckListMecanicoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(AgregarCheckListMecanicoActivity.this, SubirItemActivity.class);
-                i.putExtra("idcategoria","1");
+                i.putExtra("iditem","25");
                 startActivity(i);
             }
         });

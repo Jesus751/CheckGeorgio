@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
     EditText usertel,userpass;
     Button Biniciarsec;
-    String URL_USUARIOS="http://ubiexpress.net:5610/georgio/mobil/PanelUsusarios.php";
+    String URL_USUARIOS="http://ubiexpress.net:5610/WebServiceGeorgioMovil/PanelUsuarios.php";
     StringRequest stringRequest;
     RequestQueue requestQueue;
 
@@ -145,16 +145,12 @@ public class MainActivity extends AppCompatActivity {
                         }
                     } catch (Exception e) { e.printStackTrace(); }
                     switch (TIPO){
-                        case "repartidorg":{
+                        case "mecanico":{
                             //ObjetosTemporales.GuardarUsuario(ID_USER, NOMBRE, TELEFONO, CLAVE, TIPO);
                             //startActivity(new Intent(getApplicationContext(), ModuloPrincipal.class));
                             Intent  i =  new Intent(getApplicationContext(),ModuloPrincipal.class);
                             i.putExtra("repar", TIPO);
                             startActivity(i);
-                        };break;
-                        case "chofer":{
-                            //ObjetosTemporales.GuardarUsuario(ID_USER, NOMBRE, TELEFONO, CLAVE, TIPO);
-                            startActivity(new Intent(getApplicationContext(), CheckMecanico.class));
                         };break;
                         case "recepcion":{
                            // ObjetosTemporales.GuardarUsuario(ID_USER, NOMBRE, TELEFONO, CLAVE, TIPO);
@@ -164,7 +160,7 @@ public class MainActivity extends AppCompatActivity {
                             startActivity(i);
 
                         }; break;
-                        case "repartidor":{
+                        case "administrador":{
                             Intent i =  new Intent(getApplicationContext(), MenuAdminActivity.class);
                             i.putExtra("nom", NOMBRE);
                             i.putExtra("apell",APELLIDO);
