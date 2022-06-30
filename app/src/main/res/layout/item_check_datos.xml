@@ -6,8 +6,6 @@
     android:background="@drawable/redondearetiquetas"
     android:gravity="center"
     android:orientation="vertical">
-
-
     <LinearLayout
         android:layout_width="392dp"
         android:layout_height="wrap_content"
@@ -22,7 +20,7 @@
                 android:id="@+id/ext"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=" Id CheckList :"
+                android:text=" CheckList :"
                 android:textColor="#070707" />
 
             <TextView
@@ -35,7 +33,7 @@
                 android:id="@+id/textcat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=" Id Categoria :"
+                android:text=" Categoria :"
                 android:textColor="#070707" />
 
             <TextView
@@ -46,6 +44,7 @@
         </LinearLayout>
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -80,10 +79,10 @@
                 android:id="@+id/btnEditar"
                 android:layout_width="120dp"
                 android:layout_height="40dp"
+                android:background="@drawable/redondearetiquetas"
                 android:layout_marginStart="50dp"
                 android:layout_marginEnd="50dp"
                 android:layout_marginBottom="10dp"
-                android:background="@color/verde"
                 android:text="Editar">
 
             </Button>
@@ -92,7 +91,7 @@
                 android:id="@+id/btnEliminar"
                 android:layout_width="120dp"
                 android:layout_height="40dp"
-                android:background="@color/rojo"
+                android:background="@drawable/redondearetiquetas"
                 android:text="Eliminar">
 
             </Button>

@@ -43,11 +43,10 @@ public class SubirItemActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     EditText nombreCheckList;
     Button guardar;
-    TextView nombreCATE,cate ;
+    TextView nombreCATE ;
 
 
     String UPLOAD_URL = "http://ubiexpress.net:5610/WebServiceGeorgioMovil/PanelCheckList.php";
-    String URL_CATEGORIAS= "http://ubiexpress.net:5610/WebServiceGeorgioMovil/PaneltemsMecanico.php";
     String KEY_NOMBRE_CHECK = "nombreCheck";
 
     StringRequest stringRequest;
@@ -58,22 +57,27 @@ public class SubirItemActivity extends AppCompatActivity {
 
     String iDCategoria="";
     String iDServicio="";
+    String nombreUse="";
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_subir_item);
+        recyclerView = findViewById(R.id.ReciclerCheckList);
+        nombreCheckList = findViewById(R.id.editTextTextNombreCheck);
+        guardar =  findViewById(R.id.btbguardar);
+        nombreCATE =  findViewById(R.id.txtServicioc);
 
         Intent intent=getIntent();
         iDCategoria=intent.getStringExtra("iditem");
         iDServicio=intent.getStringExtra("idservicio");
-        recyclerView = findViewById(R.id.ReciclerCheckList);
+        nombreUse = intent.getStringExtra("categoria");
+        nombreCATE.setText(""+nombreUse);
 
 
-
-        nombreCheckList = findViewById(R.id.editTextTextNombreCheck);
-        guardar =  findViewById(R.id.btbguardar);
-        nombreCATE =  findViewById(R.id.txtServicioc);
 
         DescargaItemsCheckListDisponibles(iDCategoria);
         // Guardar Ckeck List
@@ -92,8 +96,6 @@ public class SubirItemActivity extends AppCompatActivity {
 
 
     }
-
-
 
     // Subir Nombre Check List
     public void subirCheckList(){
@@ -162,8 +164,9 @@ public class SubirItemActivity extends AppCompatActivity {
             @Override
                     protected Map<String,String> getParams() throws  AuthFailureError{
                 HashMap<String, String> params  =  new HashMap<>();
-                params.put("opcion","4");
-
+                params.put("opcion","5");
+                params.put("idctg",iDCategoria);
+                Log.e("El error es : ","Fallo en -- "+params);
                 return params;
             }
         };

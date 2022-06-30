@@ -28,6 +28,7 @@ public class AgregarCheckListReccepcionActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i =  new Intent(AgregarCheckListReccepcionActivity.this, SubirItemActivity.class);
                 i.putExtra("iditem","14");
+                i.putExtra("categoria","Accesorios y herramientas");
                 startActivity(i);
             }
         });
@@ -37,6 +38,7 @@ public class AgregarCheckListReccepcionActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i =  new Intent(AgregarCheckListReccepcionActivity.this, SubirItemActivity.class);
                 i.putExtra("iditem","15");
+                i.putExtra("categoria","Carrocería e interiores ");
                 startActivity(i);
             }
         });
@@ -46,6 +48,7 @@ public class AgregarCheckListReccepcionActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i =  new Intent(AgregarCheckListReccepcionActivity.this, SubirItemActivity.class);
                 i.putExtra("iditem","16");
+                i.putExtra("categoria","Llantas");
                 startActivity(i);
             }
         });
@@ -54,6 +57,7 @@ public class AgregarCheckListReccepcionActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i =  new Intent(AgregarCheckListReccepcionActivity.this, SubirItemActivity.class);
                 i.putExtra("iditem","17");
+                i.putExtra("categoria","Gasolina");
                 startActivity(i);
             }
         });

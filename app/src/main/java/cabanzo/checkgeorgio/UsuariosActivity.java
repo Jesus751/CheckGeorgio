@@ -31,7 +31,7 @@ import cabanzo.checkgeorgio.Modelo.ItemsUsu;
 public class UsuariosActivity extends AppCompatActivity {
 
 
-    String URL_USUARIOS = "http://ubiexpress.net:5610/georgio/mobil/PanelCompras.php";
+    String URL_USUARIOS = "http://ubiexpress.net:5610/WebServiceGeorgioMovil/PanelUsuarios.php";
     RecyclerView recyclerUsu;
     StringRequest  stringReques;
     RequestQueue requestQueue;
@@ -88,9 +88,7 @@ public class UsuariosActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 HashMap<String,String> params =  new HashMap<>();
-                params.put("opcion","54");
-                params.put("usuario",idUser);
-                Log.e("usu", idUser);
+                params.put("opcion","3");
                 return  params;
             }
         };
